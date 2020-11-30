@@ -9,10 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                Button(action: {
+                    //Get a new fact
+                    randomFacts()
+                }, label: {
+                    Text("New fun random fact, please!")
+                })
+                
+                
+            }
+           
+        
+        }
+        
+       
     }
+    
+    
+    
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
