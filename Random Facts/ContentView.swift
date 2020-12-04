@@ -13,25 +13,21 @@ struct ContentView: View {
             VStack {
                 Button(action: {
                     //Get a new fact
-                    randomFacts()
+                    fetchRandomFacts()
                 }, label: {
                     Text("New fun random fact, please!")
                 })
                 
                 
             }
-           
-        
         }
-        
-       
     }
     
     // getting a random fact
-    func fetchrandomfacts() {
+    func fetchRandomFacts() {
         
         // 1. Prepare a URLRequest to send our encoded data as JSON
-        let url = URL(string: "https://dog.ceo/api/breeds/image/random")!
+        let url = URL(string: "https://uselessfacts.jsph.pl/random.json?language=en")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
@@ -40,7 +36,7 @@ struct ContentView: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             // handle the result here – attempt to unwrap optional data provided by task
-            guard let doggieData = data else {
+            guard let randomData = data else {
                 
                 // Show the error message
                 print("No data in response: \(error?.localizedDescription ?? "Unknown error")")
@@ -49,17 +45,17 @@ struct ContentView: View {
             }
             
             // It seems to have worked? Let's see what we have
-            print(String(data: doggieData, encoding: .utf8)!)
+            print(String(data: randomData, encoding: .utf8)!)
             
             // Now decode from JSON into an array of Swift native data types
-            if let decodedDoggieData = try? JSONDecoder().decode(RandomDog.self, from: doggieData) {
+            if let randomFactData = try? JSONDecoder().decode(RandomFact.self, from: randomData) {
                 
-                print("Doggie data decoded from JSON successfully")
-                print("URL is: \(decodedDoggieData.message)")
+                print("Random data decoded from JSON successfully")
+                print("Text is: \(randomFactData.text)")
                 
-                // Now fetch the image at the address we were given
-                fetchImage(from: decodedDoggieData.message)
-                
+//                // Now fetch the fact at the address we were given
+//                fetchRandomFacts(from: randomData)
+
             } else {
                 
                 print("Invalid response from server.")
