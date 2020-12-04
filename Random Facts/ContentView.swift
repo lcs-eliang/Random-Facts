@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var fact: RandomFact = RandomFact()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -18,6 +21,7 @@ struct ContentView: View {
                     Text("New fun random fact, please!")
                 })
                 
+                Text(fact.text)
                 
             }
         }
@@ -52,9 +56,11 @@ struct ContentView: View {
                 
                 print("Random data decoded from JSON successfully")
                 print("Text is: \(randomFactData.text)")
-                
-//                // Now fetch the fact at the address we were given
-//                fetchRandomFacts(from: randomData)
+            
+                // Update the UI on the main thread
+                DispatchQueue.main.async {
+                    fact = randomFactData
+                }
 
             } else {
                 
