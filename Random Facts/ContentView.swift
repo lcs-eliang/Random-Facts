@@ -13,31 +13,31 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    Section {
-                        Button(action: {
-                            //Get a new fact
-                            fetchRandomFacts()
-                        }, label: {
-                            Text("New fun random fact, please!")
+            ZStack {
+                Color.yellow.edgesIgnoringSafeArea(.all)
+                VStack {
+                    Button(action: {
+                        //Get a new fact
+                        fetchRandomFacts()
+                    }, label: {
+                        Text("New fun random fact, please!")
+                        
+                    })
                     
-                        })
-                
                     Text(fact.text)
-                     
                     
-                    }
                     Image("BeHappy")
                         .resizable()
                         .scaledToFit()
                         .padding()
                     
+                    Spacer()
                 }
-            Spacer()
+                .navigationTitle("Random Useless Facts")
+                .padding(.horizontal)
+                .background(Color.yellow)
             }
-            .navigationTitle("Random Useless Facts")
-            .padding(.horizontal)
+            
         }
         
     }
