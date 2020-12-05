@@ -14,17 +14,32 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Button(action: {
-                    //Get a new fact
-                    fetchRandomFacts()
-                }, label: {
-                    Text("New fun random fact, please!")
-                })
+                Form {
+                    Section {
+                        Button(action: {
+                            //Get a new fact
+                            fetchRandomFacts()
+                        }, label: {
+                            Text("New fun random fact, please!")
+                    
+                        })
                 
-                Text(fact.text)
-                
+                    Text(fact.text)
+                     
+                    
+                    }
+                    Image("BeHappy")
+                        .resizable()
+                        .scaledToFit()
+                        .padding()
+                    
+                }
+            Spacer()
             }
+            .navigationTitle("Random Useless Facts")
+            .padding(.horizontal)
         }
+        
     }
     
     // getting a random fact
