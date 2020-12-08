@@ -12,32 +12,55 @@ struct ContentView: View {
     @State private var fact: RandomFact = RandomFact()
     
     var body: some View {
+
         NavigationView {
+
             ZStack {
                 Color.yellow.edgesIgnoringSafeArea(.all)
+
+
                 VStack {
                     Button(action: {
                         //Get a new fact
                         fetchRandomFacts()
+
                     }, label: {
-                        Text("New fun random fact, please!")
-                        
+                        Text("New fun random fact")
+                            .fontWeight(.semibold)
+                            .font(.title3)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding(.vertical)
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                            .cornerRadius(40)
+
+
                     })
-                    
-                    Text(fact.text)
-                    
+
+
+
+
+                    GeometryReader { geometry in
+                        Text(fact.text)
+//                            .frame(width: geometry.size.width)
+                        //                            .background(Color.white)
+                            .font(.title2)
+
+                    }
+
+
                     Image("BeHappy")
                         .resizable()
                         .scaledToFit()
                         .padding()
-                    
+
                     Spacer()
                 }
                 .navigationTitle("Random Useless Facts")
                 .padding(.horizontal)
                 .background(Color.yellow)
             }
-            
+
         }
         
     }
@@ -86,6 +109,10 @@ struct ContentView: View {
         
     }
     
+    //Save the fact
+    func saveFact() {
+        
+    }
 }
 
 
