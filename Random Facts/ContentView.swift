@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var fact: RandomFact = RandomFact()
+    @State private var facts: [RandomFact] = []
     
     var body: some View {
 
@@ -34,9 +35,22 @@ struct ContentView: View {
                             .background(Color.black)
                             .cornerRadius(40)
 
+})
+                    
+                    Button {
+                        //save a fact
+                        saveFact()
+                    } label: {
+                        Text("Save this fact")
+                            .fontWeight(.semibold)
+                            .font(.title3)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding(.vertical)
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                            .cornerRadius(40)
 
-                    })
-
+                    }
 
 
 
@@ -47,6 +61,15 @@ struct ContentView: View {
                             .font(.title2)
 
                     }
+                    
+                    List {
+         //               facts.map(trans);
+                        ForEach(facts){ (index) in
+                            Text(index.text)
+                            
+                        }
+                    }
+
 
 
                     Image("BeHappy")
@@ -64,7 +87,9 @@ struct ContentView: View {
         }
         
     }
-    
+    func trans(fact:RandomFact)->Text{
+        return Text(fact.text)
+    }
     // getting a random fact
     func fetchRandomFacts() {
         
@@ -111,6 +136,15 @@ struct ContentView: View {
     
     //Save the fact
     func saveFact() {
+        // Gain access to user defaults
+                   let defaults = UserDefaults.standard
+                    
+
+                   // Save the array of favourite colours to user defaults using the specified key
+                   //defaults.set(fact, forKey: "randomFavorite")
+                   //print(defaults.object(forKey: "randomFavorite"))
+                    
+        facts.append(fact)
         
     }
 }
