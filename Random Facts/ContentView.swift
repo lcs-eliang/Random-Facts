@@ -62,14 +62,29 @@ struct ContentView: View {
 
                     }
                     
-                    List {
+                    Text("Saved Facts")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                    
+                    ScrollView {
          //               facts.map(trans);
-                        ForEach(facts){ (index) in
-                            Text(index.text)
-                            
+                        VStack(alignment: .leading) {
+                            ForEach(facts){ (index) in
+                                Text(index.text)
+                                    .background(Color.yellow)
+                                    .listRowBackground(Color.black)
+                                    .padding()
+                                    .multilineTextAlignment(.leading)
+                                    .frame(width: 300)
+                               
+                            }
                         }
+                        
+                        
                     }
-
+                    .listRowBackground(Color.black)
+                    
 
 
                     Image("BeHappy")
